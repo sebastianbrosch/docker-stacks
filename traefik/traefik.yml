@@ -1,0 +1,27 @@
+global:
+  checkNewVersion: true
+  sendAnonymousUsage: false
+providers:
+  swarm:
+    exposedByDefault: false
+    network: "traefik-private"
+  file:
+    filename: /etc/traefik/traefik.yml
+    watch: true
+entryPoints:
+  web:
+    address: ":80"
+  websecure:
+    address: ":443"
+api:
+  dashboard: true
+  insecure: false
+  debug: false
+  disableDashboardAd: true
+certificatesResolvers:
+  acme-resolver:
+    acme:
+      email: contact@example.com
+      storage: "/letsencrypt/acme.json"
+      httpChallenge:
+        entryPoint: web
