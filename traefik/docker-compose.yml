@@ -2,7 +2,7 @@ version: '3.9'
 
 services:
   traefik:
-    image: traefik:v3.1.1
+    image: traefik:v3.1.2
     ports:
       - "80:80"
       - "443:443"
@@ -18,14 +18,14 @@ services:
     deploy:
       labels:
         - "traefik.enable=true"
-        - "traefik.http.routers.traefik.rule=Host(`${SERVER_IP}`) && (PathPrefix(`/api`) || PathPrefix(`/dashboard`))"
+        - "traefik.http.routers.traefik.rule=Host(`${SERVER_DOMAIN:-example.org}`) && (PathPrefix(`/api`) || PathPrefix(`/dashboard`))"
         - "traefik.http.routers.traefik.entrypoints=websecure"
         - "traefik.http.routers.traefik.tls=true"
         - "traefik.http.routers.traefik.tls.certresolver=acme-resolver"
         - "traefik.http.routers.traefik.service=api@internal"
         - "traefik.http.services.traefik.loadbalancer.server.port=8080"
         - "traefik.http.routers.traefik.middlewares=traefik-auth"
-        - "traefik.http.middlewares.traefik-auth.basicauth.users=${TRAEFIK_USERNAME}:${TRAEFIK_PASSWORD}"
+        - "traefik.http.middlewares.traefik-auth.basicauth.users=${TRAEFIK_USERNAME:-traefik}:${TRAEFIK_PASSWORD:-password}"
       placement:
         constraints:
           - node.role == manager
