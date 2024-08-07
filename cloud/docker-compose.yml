@@ -1,0 +1,51 @@
+version: '3.9'
+
+services:
+  owncloud:
+    image: owncloud/ocis:5.0.6
+    entrypoint:
+      - /bin/sh
+    command: ["-c", "ocis init || true; ocis server"]
+    user: 1000:1000
+    environment:
+      - FRONTEND_FULL_TEXT_SEARCH_ENABLED=true
+      - IDM_ADMIN_PASSWORD=${ADMIN_PASSWORD:-admin}
+      - IDM_CREATE_DEMO_USERS=false
+      - OCIS_INSECURE=false
+      - OCIS_URL=https://${SERVER_DOMAIN:-example.org}
+      - OCIS_LOG_COLOR=true
+      - OCIS_LOG_LEVEL=warn
+      - OCIS_LOG_PRETTY=true
+      - OCIS_SERVICE_ACCOUNT_ID=${SERVICE_ACCOUNT_ID}
+      - OCIS_SERVICE_ACCOUNT_SECRET=${SERVICE_ACCOUNT_SECRET}
+      - PROXY_ENABLE_BASIC_AUTH=false
+      - PROXY_HTTP_ADDR=0.0.0.0:9200
+      - PROXY_TLS=false
+      - SEARCH_EXTRACTOR_TYPE=tika
+      - SEARCH_EXTRACTOR_TIKA_TIKA_URL=http://tika:9998
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - ./config:/etc/ocis
+      - ./data:/var/lib/ocis
+    networks:
+      - traefik-public
+      - owncloud-private
+    deploy:
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.owncloud.rule=Host(`${SERVER_DOMAIN:-example.org}`)"
+        - "traefik.http.routers.owncloud.entrypoints=websecure"
+        - "traefik.http.routers.owncloud.tls=true"
+        - "traefik.http.routers.owncloud.tls.certresolver=acme-resolver"
+        - "traefik.http.services.owncloud.loadbalancer.server.port=9200"
+        - "traefik.docker.network=traefik-public"
+  tika:
+    image: apache/tika:2.9.2.1
+    networks:
+      - owncloud-private
+
+networks:
+  traefik-public:
+    external: true
+  owncloud-private:
