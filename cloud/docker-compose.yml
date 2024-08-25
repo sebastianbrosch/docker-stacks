@@ -12,7 +12,7 @@ services:
       - IDM_ADMIN_PASSWORD=${ADMIN_PASSWORD:-admin}
       - IDM_CREATE_DEMO_USERS=false
       - OCIS_INSECURE=false
-      - OCIS_URL=https://${SERVER_DOMAIN:-example.org}
+      - OCIS_URL=https://${SERVER_DOMAIN:-example.com}
       - OCIS_LOG_COLOR=true
       - OCIS_LOG_LEVEL=warn
       - OCIS_LOG_PRETTY=true
@@ -34,7 +34,7 @@ services:
     deploy:
       labels:
         - "traefik.enable=true"
-        - "traefik.http.routers.owncloud.rule=Host(`${SERVER_DOMAIN:-example.org}`)"
+        - "traefik.http.routers.owncloud.rule=Host(`${SERVER_DOMAIN:-example.com}`)"
         - "traefik.http.routers.owncloud.entrypoints=websecure"
         - "traefik.http.routers.owncloud.tls=true"
         - "traefik.http.routers.owncloud.tls.certresolver=acme-resolver"
