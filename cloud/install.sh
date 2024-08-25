@@ -2,7 +2,7 @@
 
 # change these values to your needs.
 export SERVER_DOMAIN=cloud.example.com
-export ADMIN_PASSWORD=XY6AGjRh4qvkTLy0e1BO
+export ADMIN_PASSWORD=admin
 export SERVICE_ACCOUNT_ID=$(uuidgen)
 
 # the credentials for the service account are generated radomly.
