@@ -1,12 +1,11 @@
 #!/bin/bash
 
-# change these values to your needs.
-export SERVER_DOMAIN=cloud.example.com
-export ADMIN_PASSWORD=admin
-export SERVICE_ACCOUNT_ID=$(uuidgen)
+# load all the environment variables from .env file.
+set -a; source .env; set +a
 
 # the credentials for the service account are generated radomly.
 # you don't have to know the credentials for the service account.
+export SERVICE_ACCOUNT_ID=$(uuidgen)
 password=$(openssl passwd -6 $(uuidgen))
 export SERVICE_ACCOUNT_SECRET=${password:25:25}
 
