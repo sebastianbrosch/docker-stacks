@@ -20,3 +20,8 @@ ownCloud Infinite Scale is a revised and modernized version of ownCloud 10. Apac
 
 - `ADMIN_PASSWORD`: The password of the admin user account.
 - `SERVER_DOMAIN`: The domain to access the instance of ownCloud Infinite Scale.
+
+## Syncthing
+Syncthing is a program for synchronizing files in real time. You can use the installation script `install.sh` to install Syncthing. Make sure that you change the environment variables in the `.env` file next to the installation script:
+
+- `SERVER_DOMAIN`: The domain to access the instance of Syncthing.
