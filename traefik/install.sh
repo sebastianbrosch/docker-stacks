@@ -1,9 +1,7 @@
 #!/bin/bash
 
-# change these values to your needs.
-export SERVER_DOMAIN=proxy.example.com
-export TRAEFIK_USERNAME=traefik
-export TRAEFIK_PASSWORD=traefik
+# load all the environment variables from .env file.
+set -a; source .env; set +a
 
 # the password have to be encrypted.
 export TRAEFIK_PASSWORD=$(openssl passwd -apr1 ${TRAEFIK_PASSWORD})
