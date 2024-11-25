@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # set the version of the various services.
-export VERSION_BAIKAL=0.9.5-nginx
+export VERSION_BAIKAL=0.10.1-nginx
 
 # export all environment variables from external .env file.
 # the docker compose command can use these variables for substitution.
