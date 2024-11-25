@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # set the version of the various services.
-export VERSION_OWNCLOUD=5.0.8
+export VERSION_OWNCLOUD=5.0.9
 export VERSION_TIKA=3.0.0.0
 
 # export all environment variables from external .env file.
