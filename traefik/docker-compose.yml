@@ -16,6 +16,8 @@ services:
       - traefik-public
       - traefik-private
     deploy:
+      update_config:
+        order: start-first
       labels:
         - "traefik.enable=true"
         - "traefik.http.routers.traefik.rule=Host(`${SERVER_DOMAIN:-example.com}`) && (PathPrefix(`/api`) || PathPrefix(`/dashboard`))"
