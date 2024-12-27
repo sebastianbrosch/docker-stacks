@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # set the version of the various services.
-export VERSION_TRAEFIK=3.2.1
+export VERSION_TRAEFIK=3.2.3
 
 # export all environment variables from external .env file.
-# the docker compose command can use these variables for substitution.
+# the docker stack deploy command can use these variables for substitution.
 set -a;
 source <(sed -e "s/\r//" .env);
 set +a;
