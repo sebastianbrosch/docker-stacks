@@ -17,8 +17,6 @@ services:
     networks:
       - traefik-public
     deploy:
-      update_config:
-        order: start-first
       labels:
         - "traefik.enable=true"
         - "traefik.http.routers.syncthing.entrypoints=websecure"
