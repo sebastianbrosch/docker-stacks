@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # set the version of the various services.
-export VERSION_SYNCTHING=1.28.1
+export VERSION_SYNCTHING=1.29.5
 
 # export all environment variables from external .env file.
 # the docker stack deploy command can use these variables for substitution.
