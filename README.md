@@ -1,12 +1,12 @@
-# :whale: Docker Stacks
-This repository provides the following Docker Stacks:
+# :whale: Docker Stacks - Cloud Services
+Docker Stacks to provide various cloud services on a server (e.g. VPS) or device (e.g. Raspberry Pi) with Docker Stack.
 
 - Traefik: [Docker Hub](https://hub.docker.com/_/traefik) - [GitHub](https://github.com/traefik/traefik)
 - ownCloud Infinite Scale: [Docker Hub](https://hub.docker.com/r/owncloud/ocis) - [GitHub](https://github.com/owncloud/ocis)
 - Syncthing: [Docker Hub](https://hub.docker.com/r/syncthing/syncthing) - [GitHub](https://github.com/syncthing/syncthing)
 - Baikal: [Docker Hub (*unofficial*)](https://hub.docker.com/r/ckulka/baikal) - [GitHub](https://github.com/sabre-io/Baikal)
 
-It is also possible to combine these stacks to host the necessary services on a server or device.
+It is possible to combine these stacks to provide the desired services.
 
 ## Traefik
 Traefik is a HTTP reverse proxy and load balancer. Traefik is used to reach different services with different domains or URLs. Also make sure to change the email address of the ACME certificate resolver in `traefik.yml`.
